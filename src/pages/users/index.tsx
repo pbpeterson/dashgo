@@ -5,10 +5,12 @@ import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 import { Pagination } from '../../components/Pagination'
 import Link  from 'next/link'
 import { useUsers } from '../../services/hooks/useUsers'
+import { useState } from 'react'
 
 
 export default function Userlist(){
-  const { data, isLoading, error, isFetching } = useUsers()
+  const [page, setPage] = useState(1)
+  const { data, isLoading, error, isFetching } = useUsers(page)
 
   const isWideVersion = useBreakpointValue({
     base:false,
@@ -57,7 +59,7 @@ export default function Userlist(){
             </Tr>
           </Thead>
           <Tbody>
-            {data.map(user =>(
+            {data.users.map(user =>(
               <Tr key={user.id}>
               <Td px={['4', '4', '6']} >
                 <Checkbox colorScheme='pink'/> 
@@ -83,8 +85,8 @@ export default function Userlist(){
           </Tbody>
         </Table>
         <Pagination totalCountOfRegisters={200}
-        currentPage={5}
-        onPageChange={()=>{}}/>
+        currentPage={page}
+        onPageChange={setPage}/>
          </>
        )}
 
