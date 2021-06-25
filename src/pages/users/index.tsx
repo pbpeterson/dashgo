@@ -69,7 +69,7 @@ export default function Userlist(){
                 </Box>
               </Td>
               {isWideVersion && (
-                <Td>{user.createdAt}</Td>
+                <Td>{user.create_at}</Td>
               )}
               <Td>
               {isWideVersion &&(
@@ -82,7 +82,9 @@ export default function Userlist(){
             ))}
           </Tbody>
         </Table>
-        <Pagination/>
+        <Pagination totalCountOfRegisters={200}
+        currentPage={5}
+        onPageChange={()=>{}}/>
          </>
        )}
 
